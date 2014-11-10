@@ -8,7 +8,7 @@
  */
 
 chdir(__DIR__);
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once('vendor/autoload.php');
 
 $bootstrap = new \BluePsyduck\ManiaScriptCollection\Bootstrap();
 $bootstrap->bootstrap();
