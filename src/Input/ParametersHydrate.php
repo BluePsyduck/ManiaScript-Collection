@@ -16,7 +16,6 @@ class ParametersHydrate {
      * @return \BluePsyduck\ManiaScriptCollection\Input\Parameters The hydrated parameters.
      */
     public function hydrate(Parameters $parameters, array $data) {
-        var_dump($data);
         reset($data);
         $current = current($data);
         if (empty($current)) {
