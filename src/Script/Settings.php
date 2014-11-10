@@ -34,12 +34,6 @@ class Settings {
     protected $namespace = '';
 
     /**
-     * The directives of the script.
-     * @var \ManiaScript\Builder\Directive\AbstractDirective[]
-     */
-    protected $directives = array();
-
-    /**
      * The dependencies of the script.
      * @var string[]
      */
@@ -121,24 +115,6 @@ class Settings {
      */
     public function getNamespace() {
         return $this->namespace;
-    }
-
-    /**
-     * Sets the directives of the script.
-     * @param \ManiaScript\Builder\Directive\AbstractDirective[] $directives The directives
-     * @return $this Implementing fluent interface.
-     */
-    public function setDirectives(array $directives) {
-        $this->directives = $directives;
-        return $this;
-    }
-
-    /**
-     * Returns the directives of the script.
-     * @return \ManiaScript\Builder\Directive\AbstractDirective[] The directives.
-     */
-    public function getDirectives() {
-        return $this->directives;
     }
 
     /**

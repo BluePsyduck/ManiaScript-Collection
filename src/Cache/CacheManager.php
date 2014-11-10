@@ -68,7 +68,8 @@ class CacheManager {
         $code->setSettings($settings)
              ->setRawCode($entry->getRawCode())
              ->setPatchedCode($entry->getPatchedCode())
-             ->setCompressedCode($entry->getCompressedCode());
+             ->setCompressedCode($entry->getCompressedCode())
+             ->setDirectives($entry->getDirectives());
          return $code;
     }
 
@@ -81,7 +82,8 @@ class CacheManager {
         $entry = new Entry();
         $entry->setRawCode($code->getRawCode())
               ->setPatchedCode($code->getPatchedCode())
-              ->setCompressedCode($code->getCompressedCode());
+              ->setCompressedCode($code->getCompressedCode())
+              ->setDirectives($code->getDirectives());
         return $entry;
     }
 }

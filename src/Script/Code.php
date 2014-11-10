@@ -34,6 +34,12 @@ class Code {
     protected $compressedCode = '';
 
     /**
+     * The directives.
+     * @var \ManiaScript\Builder\Directive\AbstractDirective[]
+     */
+    protected $directives = array();
+
+    /**
      * Sets the script settings of the code.
      * @param \BluePsyduck\ManiaScriptCollection\Script\Settings $settings The script settings.
      * @return $this Implementing fluent interface.
@@ -103,5 +109,23 @@ class Code {
      */
     public function getCompressedCode() {
         return $this->compressedCode;
+    }
+
+    /**
+     * Sets the directives.
+     * @param \ManiaScript\Builder\Directive\AbstractDirective[] $directives The directives.
+     * @return $this Implementing fluent interface.
+     */
+    public function setDirectives(array $directives) {
+        $this->directives = $directives;
+        return $this;
+    }
+
+    /**
+     * Returns the directives.
+     * @return \ManiaScript\Builder\Directive\AbstractDirective[] The directives.
+     */
+    public function getDirectives() {
+        return $this->directives;
     }
 }

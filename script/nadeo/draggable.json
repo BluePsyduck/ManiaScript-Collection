@@ -2,17 +2,5 @@
     "name": "nadeo/draggable",
     "author": "Nadeo",
     "source": "https://raw.githubusercontent.com/maniaplanet/library-manialink/master/modules/Draggable.Script.txt",
-    "namespace": "LibManialink",
-    "directives": [
-        {
-            "type": "include",
-            "name": "MathLib",
-            "alias": "ML"
-        },
-        {
-            "type": "include",
-            "name": "TextLib",
-            "alias": "TL"
-        }
-    ]
+    "namespace": "LibManialink"
 }

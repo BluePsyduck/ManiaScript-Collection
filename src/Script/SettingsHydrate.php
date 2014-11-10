@@ -32,13 +32,6 @@ class SettingsHydrate {
         if (isset($data['namespace'])) {
             $settings->setNamespace(trim($data['namespace']));
         }
-        if (isset($data['directives']) && is_array($data['directives'])) {
-            $directives = array();
-            foreach ($data['directives'] as $directiveData) {
-                $directives[] = $this->mapDirective($directiveData);
-            }
-            $settings->setDirectives(array_filter($directives));
-        }
         if (isset($data['dependencies']) && is_array($data['dependencies'])) {
             $settings->setDependencies(array_map('strval', $data['dependencies']));
         }
@@ -46,46 +39,5 @@ class SettingsHydrate {
             $settings->setConflicts(array_map('strval', $data['conflicts']));
         }
         return $settings;
-    }
-
-    /**
-     * Maps the directive data to an instance.
-     * @param array $data The data.
-     * @return \ManiaScript\Builder\Directive\AbstractDirective The directive instance.
-     */
-    protected function mapDirective(array $data) {
-        $result = null;
-        if (isset($data['type'])) {
-            switch ($data['type']) {
-                case 'include':
-                case 'library':
-                    if (isset($data['name'])) {
-                        $result = new Library();
-                        $result->setLibrary($data['name']);
-                        if (isset($data['alias'])) {
-                            $result->setAlias($data['alias']);
-                        }
-                    }
-                    break;
-
-                case 'const':
-                case 'constant':
-                    if (isset($data['name']) && isset($data['value'])) {
-                        $result = new Constant();
-                        $result->setName($data['name'])
-                               ->setValue($data['value']);
-                    }
-                    break;
-
-                case 'setting':
-                    if (isset($data['name']) && isset($data['value'])) {
-                        $result = new Setting();
-                        $result->setName($data['name'])
-                               ->setValue($data['value']);
-                    }
-                    break;
-            }
-        }
-        return $result;
     }
 }

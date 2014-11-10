@@ -25,6 +25,12 @@ class Loader {
     protected $cacheManager;
 
     /**
+     * The patcher.
+     * @var \BluePsyduck\ManiaScriptCollection\Script\Patcher
+     */
+    protected $patcher;
+
+    /**
      * The ManiaScript compressor.
      * @var \ManiaScript\Compressor
      */
@@ -47,6 +53,7 @@ class Loader {
      */
     public function __construct() {
         $this->cacheManager = new CacheManager();
+        $this->patcher = new Patcher();
         $this->compressor = new Compressor();
     }
 
@@ -74,6 +81,7 @@ class Loader {
                 $this->request($code)
                      ->patch($code)
                      ->compress($code);
+
                 $this->cacheManager->persist($code);
             }
             $this->scriptCodes[] = $code;
@@ -125,7 +133,10 @@ class Loader {
      * @return $this Implementing fluent interface.
      */
     protected function patch(Code $code) {
-        $code->setPatchedCode($code->getRawCode());
+        $this->patcher->setCode($code->getRawCode())
+                      ->patch();
+        $code->setPatchedCode($this->patcher->getPatchedCode())
+             ->setDirectives($this->patcher->getDirectives());
         return $this;
     }
 

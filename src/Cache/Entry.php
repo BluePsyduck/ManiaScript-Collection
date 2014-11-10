@@ -30,6 +30,12 @@ class Entry {
     protected $compressedCode = '';
 
     /**
+     * The directives.
+     * @var \ManiaScript\Builder\Directive\AbstractDirective[]
+     */
+    protected $directives = array();
+
+    /**
      * The timestamp when the entry has been saved to the cache.
      * @var \DateTime
      */
@@ -94,6 +100,24 @@ class Entry {
      */
     public function getCompressedCode() {
         return $this->compressedCode;
+    }
+
+    /**
+     * Sets the directives.
+     * @param \ManiaScript\Builder\Directive\AbstractDirective[] $directives The directives.
+     * @return $this Implementing fluent interface.
+     */
+    public function setDirectives(array $directives) {
+        $this->directives = $directives;
+        return $this;
+    }
+
+    /**
+     * Returns the directives.
+     * @return \ManiaScript\Builder\Directive\AbstractDirective[] The directives.
+     */
+    public function getDirectives() {
+        return $this->directives;
     }
 
     /**
