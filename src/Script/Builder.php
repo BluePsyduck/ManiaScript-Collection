@@ -3,6 +3,7 @@
 namespace BluePsyduck\ManiaScriptCollection\Script;
 
 use BluePsyduck\ManiaScriptCollection\Input\Parameters;
+use BluePsyduck\ManiaScriptCollection\Log\Logger;
 use ManiaScript\Builder as ManiaScriptBuilder;
 use ManiaScript\Builder\Code as ManiaScriptCode;
 
@@ -63,6 +64,16 @@ class Builder {
      * @return $this Implementing fluent interface.
      */
     public function build() {
+        $this->buildCodes()
+             ->buildLog();
+        return $this;
+    }
+
+    /**
+     * Build the script codes.
+     * @return $this Implementing fluent interface.
+     */
+    protected function buildCodes() {
         foreach ($this->codes as $code) {
             $globalCode = new ManiaScriptCode();
             if ($this->parameters->getCompress()) {
@@ -75,6 +86,28 @@ class Builder {
             foreach ($code->getDirectives() as $directive) {
                 $this->builder->addDirective($directive);
             }
+        }
+        return $this;
+    }
+
+    /**
+     * Builds the log.
+     * @return $this Implementing fluent interface.
+     */
+    protected function buildLog() {
+        $items = Logger::getInstance()->getFilteredItems($this->parameters->getLogLevel());
+        if (!empty($items)) {
+            $log = '/**' . PHP_EOL
+                . ' * ManiaScript Collection Log: ' . PHP_EOL;
+            foreach ($items as $item) {
+                $log .= ' * [' . strtoupper($item->getLevel()) . '] ' . $item->getMessage() . PHP_EOL;
+            }
+            $log .= ' */' . PHP_EOL;
+
+            $globalCode = new ManiaScriptCode();
+            $globalCode->setCode($log)
+                       ->setPriority(0);
+            $this->builder->addGlobalCode($globalCode);
         }
         return $this;
     }

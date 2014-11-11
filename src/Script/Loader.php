@@ -3,6 +3,7 @@
 namespace BluePsyduck\ManiaScriptCollection\Script;
 
 use BluePsyduck\ManiaScriptCollection\Cache\CacheManager;
+use BluePsyduck\ManiaScriptCollection\Log\Logger;
 use Exception;
 use ManiaScript\Compressor;
 
@@ -74,17 +75,35 @@ class Loader {
     public function load() {
         $this->scriptCodes = array();
         foreach ($this->scriptsToLoad as $script) {
-            $code = $this->cacheManager->load($script);
+            $code = $this->cacheManager->fetch($script);
             if (is_null($code)) {
                 $code = new Code();
                 $code->setSettings($script);
-                $this->request($code)
-                     ->patch($code)
-                     ->compress($code);
+                $this->request($code);
 
-                $this->cacheManager->persist($code);
+                if ($code->getRawCode()) {
+                    $this->patch($code)
+                         ->compress($code);
+
+                    $this->cacheManager->persist($code);
+                } else {
+                    $code = $this->cacheManager->fetchOutdated($script);
+                    if (is_null($code)) {
+                        Logger::getInstance()->log(
+                            '[Loader] Unable to load "' . $script->getName() . '", script must be skipped!',
+                            Logger::LEVEL_CRITICAL
+                        );
+                    } else {
+                        Logger::getInstance()->log(
+                            '[Loader] Using outdated version of "' . $script->getName() . '"',
+                            Logger::LEVEL_WARNING
+                        );
+                    }
+                }
             }
-            $this->scriptCodes[] = $code;
+            if (!is_null($code)) {
+                $this->scriptCodes[] = $code;
+            }
         }
         return $this;
     }
@@ -103,6 +122,11 @@ class Loader {
      * @return $this Implementing fluent interface.
      */
     protected function request(Code $code) {
+        Logger::getInstance()->log(
+            '[Loader] Request "' . $code->getSettings()->getName() . '"',
+            Logger::LEVEL_INFO
+        );
+
         $handle = curl_init();
         try {
             curl_setopt_array($handle, array(
@@ -114,15 +138,20 @@ class Loader {
             ));
 
             $response = curl_exec($handle);
+            if (curl_errno($handle) > 0) {
+                throw new Exception(curl_error($handle), curl_errno($handle));
+            }
             if ($response) {
                 $code->setRawCode($response);
             }
-
         } catch (Exception $e) {
             if ($handle) {
                 curl_close($handle);
             }
-            // @todo Handle exception properly
+            Logger::getInstance()->log(
+                '[Loader] Request of "' . $code->getSettings()->getName() . '" failed: ' . $e->getMessage(),
+                Logger::LEVEL_WARNING
+            );
         }
         return $this;
     }

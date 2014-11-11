@@ -2,6 +2,7 @@
 
 namespace BluePsyduck\ManiaScriptCollection\Cache;
 
+use BluePsyduck\ManiaScriptCollection\Log\Logger;
 use BluePsyduck\ManiaScriptCollection\Script\Code;
 use BluePsyduck\ManiaScriptCollection\Script\Settings;
 
@@ -10,8 +11,6 @@ use BluePsyduck\ManiaScriptCollection\Script\Settings;
  *
  * @author Marcel <marcel@mania-community.de>
  * @license http://opensource.org/licenses/GPL-2.0 GPL v2
- *
- * @todo Check timestamp of cache entry to trigger re-request
  */
 class CacheManager {
     /**
@@ -20,17 +19,59 @@ class CacheManager {
     const DIRECTORY = 'cache';
 
     /**
-     * Loads the code from the cache.
-     * @param Settings $script
-     * @return Code|null
+     * The timeout of the cache entries.
      */
-    public function load(Settings $script) {
+    const TIMEOUT = 60;
+
+    /**
+     * Fetches the code from the cache, if available.
+     * @param \BluePsyduck\ManiaScriptCollection\Script\Settings $script The script.
+     * @return \BluePsyduck\ManiaScriptCollection\Script\Code|null The code from the cache.
+     */
+    public function fetch(Settings $script) {
+        $result = null;
+        $entry = $this->load($script);
+        if (!is_null($entry) && $entry->getTime()->getTimestamp() + self::TIMEOUT >= time()) {
+            $result = $this->createCodeFromEntry($entry, $script);
+            Logger::getInstance()->log(
+                '[Cache] Hit of "' . $script->getName() . '"'
+                    . ' (Cached at ' . $entry->getTime()->format('Y-m-d H:i:s') . ')',
+                Logger::LEVEL_INFO
+            );
+        }
+        return $result;
+    }
+
+    /**
+     * Fetches the code from the cache, even if outdated.
+     * @param \BluePsyduck\ManiaScriptCollection\Script\Settings $script The script.
+     * @return \BluePsyduck\ManiaScriptCollection\Script\Code|null The code from the cache.
+     */
+    public function fetchOutdated(Settings $script) {
+        $result = $this->load($script);
+        if (!is_null($result)) {
+            Logger::getInstance()->log(
+                '[Cache] Outdated hit of "' . $script->getName() . '"'
+                    . ' (Cached at ' . $result->getTime()->format('Y-m-d H:i:s') . ')',
+                Logger::LEVEL_INFO
+            );
+            $result = $this->createCodeFromEntry($result, $script);
+        }
+        return $result;
+    }
+
+    /**
+     * Loads the entry from the cache, if available.
+     * @param \BluePsyduck\ManiaScriptCollection\Script\Settings $script The script.
+     * @return \BluePsyduck\ManiaScriptCollection\Cache\Entry|null The entry from the cache.
+     */
+    protected function load(Settings $script) {
         $result = null;
         $fileName = $this->getFileName($script);
         if (file_exists($fileName)) {
             $content = unserialize(file_get_contents($fileName));
             if ($content instanceof Entry) {
-                $result = $this->createCodeFromEntry($content, $script);
+                $result = $content;
             }
         }
         return $result;

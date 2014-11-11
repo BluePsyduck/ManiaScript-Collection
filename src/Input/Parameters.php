@@ -2,6 +2,8 @@
 
 namespace BluePsyduck\ManiaScriptCollection\Input;
 
+use BluePsyduck\ManiaScriptCollection\Log\Logger;
+
 /**
  * A container for the input parameters.
  *
@@ -20,6 +22,12 @@ class Parameters {
      * @var bool
      */
     protected $compress = true;
+
+    /**
+     * The log level to report.
+     * @var string
+     */
+    protected $logLevel = Logger::LEVEL_CRITICAL;
 
     /**
      * Sets the scripts to load.
@@ -55,5 +63,23 @@ class Parameters {
      */
     public function getCompress() {
         return $this->compress;
+    }
+
+    /**
+     * Sets the log level to report.
+     * @param string $log The log level.
+     * @return $this Implementing fluent interface.
+     */
+    public function setLogLevel($log) {
+        $this->logLevel = $log;
+        return $this;
+    }
+
+    /**
+     * Returns the log level to report.
+     * @return string The log level.
+     */
+    public function getLogLevel() {
+        return $this->logLevel;
     }
 }

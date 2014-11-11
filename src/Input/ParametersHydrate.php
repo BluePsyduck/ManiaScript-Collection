@@ -27,6 +27,9 @@ class ParametersHydrate {
         if (isset($data['compress'])) {
             $parameters->setCompress($data['compress'] != 0);
         }
+        if (isset($data['log'])) {
+            $parameters->setLogLevel($data['log']);
+        }
         return $parameters;
     }
 }

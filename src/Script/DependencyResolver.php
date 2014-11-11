@@ -2,6 +2,8 @@
 
 namespace BluePsyduck\ManiaScriptCollection\Script;
 
+use BluePsyduck\ManiaScriptCollection\Log\Logger;
+
 /**
  * Class able to resolve the dependencies of the scripts.
  *
@@ -57,9 +59,11 @@ class DependencyResolver {
             $scriptName = $this->requiredScripts[0];
             $settings = $this->settingsFactory->get($scriptName);
             if (is_null($settings)) {
-                // @todo Logger
-                echo 'Unable to resolve Script "' . $scriptName . '": Script not recognized.';
-                die;
+                Logger::getInstance()->log(
+                    '[DependencyResolver] Unable to resolve "' . $scriptName . '": Script not known.',
+                    Logger::LEVEL_CRITICAL
+                );
+                array_shift($this->requiredScripts);
             } else {
                 $this->resolveDependencies($settings);
             }
@@ -78,6 +82,10 @@ class DependencyResolver {
             if (!isset($this->scriptsToLoad[$dependency])) {
                 array_unshift($this->requiredScripts, $dependency);
                 $hasUnloadedDependencies = true;
+                Logger::getInstance()->log(
+                    '[DependencyResolver] Add dependency "' . $dependency . '" of "' . $script->getName() . '".',
+                    Logger::LEVEL_INFO
+                );
             }
         }
         if (!$hasUnloadedDependencies) {
