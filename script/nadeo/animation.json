@@ -2,5 +2,7 @@
     "name": "nadeo/animation",
     "author": "Nadeo",
     "source": "https://raw.githubusercontent.com/maniaplanet/library-manialink/master/modules/Animation.Script.txt",
-    "namespace": "LibManialink"
+    "namespace": "LibManialink",
+    "dependencies": [],
+    "conflicts": []
 }
