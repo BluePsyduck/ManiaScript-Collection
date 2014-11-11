@@ -30,7 +30,8 @@ class Bootstrap {
                ->load();
 
         $builder = $this->createBuilder();
-        $builder->setCodes($loader->getScriptCodes())
+        $builder->setParameters($parameters)
+                ->setCodes($loader->getScriptCodes())
                 ->build();
 
         header('Content-Type: text/xml;charset=utf8');

@@ -146,9 +146,11 @@ class Loader {
      * @return $this Implementing fluent interface.
      */
     protected function compress(Code $code) {
+        $comment = '/* ManiaScript Collection: ' . $code->getSettings()->getName() . ' */ ';
+
         $this->compressor->setCode($code->getPatchedCode())
                          ->compress();
-        $code->setCompressedCode($this->compressor->getCompressedCode());
+        $code->setCompressedCode($comment . $this->compressor->getCompressedCode());
         return $this;
     }
 }

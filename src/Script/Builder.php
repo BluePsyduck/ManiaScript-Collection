@@ -2,6 +2,7 @@
 
 namespace BluePsyduck\ManiaScriptCollection\Script;
 
+use BluePsyduck\ManiaScriptCollection\Input\Parameters;
 use ManiaScript\Builder as ManiaScriptBuilder;
 use ManiaScript\Builder\Code as ManiaScriptCode;
 
@@ -12,6 +13,12 @@ use ManiaScript\Builder\Code as ManiaScriptCode;
  * @license http://opensource.org/licenses/GPL-2.0 GPL v2
  */
 class Builder {
+    /**
+     * The input parameters.
+     * @var \BluePsyduck\ManiaScriptCollection\Input\Parameters
+     */
+    protected $parameters;
+
     /**
      * The codes to print.
      * @var \BluePsyduck\ManiaScriptCollection\Script\Code[]
@@ -32,6 +39,16 @@ class Builder {
     }
 
     /**
+     * Sets the input parameters.
+     * @param \BluePsyduck\ManiaScriptCollection\Input\Parameters $parameters The parameters instance.
+     * @return $this Implementing fluent interface.
+     */
+    public function setParameters(Parameters $parameters) {
+        $this->parameters = $parameters;
+        return $this;
+    }
+
+    /**
      * Sets the codes to print.
      * @param \BluePsyduck\ManiaScriptCollection\Script\Code[] $codes The codes.
      * @return $this Implementing fluent interface.
@@ -48,7 +65,11 @@ class Builder {
     public function build() {
         foreach ($this->codes as $code) {
             $globalCode = new ManiaScriptCode();
-            $globalCode->setCode($code->getPatchedCode());
+            if ($this->parameters->getCompress()) {
+                $globalCode->setCode($code->getCompressedCode());
+            } else {
+                $globalCode->setCode($code->getPatchedCode());
+            }
             $this->builder->addGlobalCode($globalCode);
 
             foreach ($code->getDirectives() as $directive) {
@@ -64,7 +85,9 @@ class Builder {
      */
     public function getFinalCode() {
         $this->builder->getOptions()->setCompress(false)
-                                    ->setIncludeScriptTag(true);
+                                    ->setIncludeScriptTag(true)
+                                    ->setRenderContextDirective(false)
+                                    ->setRenderMainFunction(false);
         $this->builder->build();
         return $this->builder->getCode();
     }

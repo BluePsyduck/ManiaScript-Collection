@@ -16,6 +16,12 @@ class Parameters {
     protected $scripts = array();
 
     /**
+     * Whether to compress the result script.
+     * @var bool
+     */
+    protected $compress = true;
+
+    /**
      * Sets the scripts to load.
      * @param array $scripts The scripts.
      * @return $this Implementing fluent interface.
@@ -31,5 +37,23 @@ class Parameters {
      */
     public function getScripts() {
         return $this->scripts;
+    }
+
+    /**
+     * Sets whether to compress the result script.
+     * @param boolean $compress The compress flag.
+     * @return $this Implementing fluent interface.
+     */
+    public function setCompress($compress) {
+        $this->compress = $compress;
+        return $this;
+    }
+
+    /**
+     * Returns whether to compress the result script.
+     * @return boolean The compress flag.
+     */
+    public function getCompress() {
+        return $this->compress;
     }
 }

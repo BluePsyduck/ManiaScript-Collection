@@ -24,6 +24,9 @@ class ParametersHydrate {
                 $parameters->setScripts(array_filter(explode(',', $scripts)));
             }
         }
+        if (isset($data['compress'])) {
+            $parameters->setCompress($data['compress'] != 0);
+        }
         return $parameters;
     }
 }
