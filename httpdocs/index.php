@@ -7,8 +7,8 @@
  * @license http://opensource.org/licenses/GPL-2.0 GPL v2
  */
 
-chdir(__DIR__);
-require_once('vendor/autoload.php');
+chdir(dirname(__DIR__));
+require_once(dirname(__DIR__) . '/vendor/autoload.php');
 
 $bootstrap = new \BluePsyduck\ManiaScriptCollection\Bootstrap();
 $bootstrap->bootstrap();
