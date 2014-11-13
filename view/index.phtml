@@ -10,16 +10,21 @@
     </head>
     <body>
         <div id="content">
-            <?php foreach ($this->scripts as $name => $group) { ?>
-                <div class="script-group">
-                    <h3>Group: <?php echo $this->escape($name); ?></h3>
-                    <ul><?php
-                        foreach ($group as $script) {
-                            echo $this->partial('partial/script.phtml', array('script' => $script));
-                        }
-                    ?></ul>
-                </div>
-            <?php } ?>
+            <?php echo $this->partial('partial/usage.phtml'); ?>
+
+            <section id="scripts">
+                <h1>Available Scripts</h1>
+                <?php foreach ($this->scripts as $name => $group) { ?>
+                    <section class="script-group">
+                        <h3 class="content-title">Group: <?php echo $this->escape($name); ?></h3>
+                        <ul><?php
+                            foreach ($group as $script) {
+                                echo $this->partial('partial/script.phtml', array('script' => $script));
+                            }
+                        ?></ul>
+                    </section>
+                <?php } ?>
+            </section>
         </div>
     </body>
 </html>

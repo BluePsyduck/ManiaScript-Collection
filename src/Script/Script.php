@@ -22,6 +22,18 @@ class Script {
     protected $author = '';
 
     /**
+     * The description of the script.
+     * @var string
+     */
+    protected $description = '';
+
+    /**
+     * The website with the documentation of the script.
+     * @var string
+     */
+    protected $website = '';
+
+    /**
      * The source URL of the script, where it can be downloaded.
      * @var string
      */
@@ -79,6 +91,42 @@ class Script {
      */
     public function getAuthor() {
         return $this->author;
+    }
+
+    /**
+     * Sets the description of the script.
+     * @param string $description The description.
+     * @return $this Implementing fluent interface.
+     */
+    public function setDescription($description) {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * Returns the description of the script.
+     * @return string The description.
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+
+    /**
+     * Sets the website with the documentation of the script.
+     * @param string $website The website.
+     * @return $this Implementing fluent interface.
+     */
+    public function setWebsite($website) {
+        $this->website = $website;
+        return $this;
+    }
+
+    /**
+     * Returns the website with the documentation of the script.
+     * @return string The website.
+     */
+    public function getWebsite() {
+        return $this->website;
     }
 
     /**

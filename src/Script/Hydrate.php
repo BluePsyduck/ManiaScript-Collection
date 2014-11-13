@@ -22,6 +22,12 @@ class Hydrate {
         if (isset($data['author'])) {
             $script->setAuthor(trim($data['author']));
         }
+        if (isset($data['description'])) {
+            $script->setDescription(trim($data['description']));
+        }
+        if (isset($data['website'])) {
+            $script->setWebsite(trim($data['website']));
+        }
         if (isset($data['source'])) {
             $script->setSource(trim($data['source']));
         }

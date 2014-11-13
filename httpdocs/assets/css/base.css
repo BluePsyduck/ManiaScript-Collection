@@ -1,5 +1,6 @@
 html {
     background: url('../img/stripes-black.png') repeat center top black;
+    color: #4e4e4e;
     font-family: Open Sans,Tahoma,Calibri,Verdana,Geneva,sans-serif;
     font-size: 0.9em;
 }
@@ -20,11 +21,18 @@ a:hover, a:active {
     width: 1024px;
 }
 
+h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 20px 10px 0 10px;
+
+}
+
 .script-group {
     margin: 10px 0;
 }
 
-.script-group h3 {
+.content-title {
     background: url('../img/gradient-black.png') repeat-x black;
     border: 1px solid rgb(153, 153, 153);
     border-radius: 5px 5px 0 0;
@@ -33,13 +41,29 @@ a:hover, a:active {
     padding: 4px 10px;
 }
 
-.script-group ul li {
+.content-box {
     background: url('../img/gradient-white.png') repeat-x bottom #f2f6f8;
     border: 1px solid;
     border-color: #ffffff #c4c4c4 #c4c4c4;
-    color: #4e4e4e;
+    box-shadow: -2px 2px 2px #c8c8c8;
     display: block;
     padding: 4px 10px;
+}
+.description {
+    font-style: italic;
+}
+input[type=text] {
+    border: 1px solid #6b91ab;
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 4px;
+}
+
+.script-group ul li {
+    cursor: pointer;
+}
+.script-group ul li.checked {
+    background-color: #deeef8;
 }
 
 .script-group ul li .checkbox {
@@ -56,7 +80,6 @@ a:hover, a:active {
 }
 .script-group ul li .description {
     display: block;
-    font-style: italic;
     margin: 4px 0;
 }
 .script-group ul li .legend {
@@ -69,4 +92,20 @@ a:hover, a:active {
 }
 .script-group ul li .legend dd {
     margin-left: 100px;
+}
+.script-group ul li .description::after, .script-group ul li .legend dd::after {
+    content: '\00a0';
+}
+
+.usage .output {
+    padding: 10px 0;
+    margin: 0 auto;
+    width: 90%;
+}
+.usage .output input[type=text] {
+    font-family: monospace;
+    font-weight: normal;
+    text-align: center;
+    text-overflow: ellipsis;
+    width: 99%;
 }
