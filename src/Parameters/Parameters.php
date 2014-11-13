@@ -1,8 +1,8 @@
 <?php
 
-namespace BluePsyduck\ManiaScriptCollection\Input;
+namespace BluePsyduck\ManiaScriptCollection\Parameters;
 
-use BluePsyduck\ManiaScriptCollection\Log\Logger;
+use BluePsyduck\ManiaScriptCollection\Logger\Logger;
 
 /**
  * A container for the input parameters.

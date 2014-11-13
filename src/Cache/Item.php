@@ -5,12 +5,12 @@ namespace BluePsyduck\ManiaScriptCollection\Cache;
 use DateTime;
 
 /**
- * A container for the entries saved in the cache.
+ * A container for the items saved in the cache.
  *
  * @author Marcel <marcel@mania-community.de>
  * @license http://opensource.org/licenses/GPL-2.0 GPL v2
  */
-class Entry {
+class Item {
     /**
      * The raw code as received from the external source.
      * @var string
@@ -36,13 +36,13 @@ class Entry {
     protected $directives = array();
 
     /**
-     * The timestamp when the entry has been saved to the cache.
+     * The timestamp when the item has been saved to the cache.
      * @var \DateTime
      */
     protected $time;
 
     /**
-     * Initializes the cache entry.
+     * Initializes the cache item.
      */
     public function __construct() {
         $this->time = new DateTime();
@@ -121,7 +121,7 @@ class Entry {
     }
 
     /**
-     * Sets the timestamp when the entry has been saved to the cache.
+     * Sets the timestamp when the item has been saved to the cache.
      * @param \DateTime $time The timestamp.
      * @return $this Implementing fluent interface.
      */
@@ -131,7 +131,7 @@ class Entry {
     }
 
     /**
-     * Returns the timestamp when the entry has been saved to the cache.
+     * Returns the timestamp when the item has been saved to the cache.
      * @return \DateTime The timestamp.
      */
     public function getTime() {

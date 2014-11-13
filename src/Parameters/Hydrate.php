@@ -1,6 +1,6 @@
 <?php
 
-namespace BluePsyduck\ManiaScriptCollection\Input;
+namespace BluePsyduck\ManiaScriptCollection\Parameters;
 
 /**
  * Class for hydrating the parameters from the input to the parameters class.
@@ -8,12 +8,12 @@ namespace BluePsyduck\ManiaScriptCollection\Input;
  * @author Marcel <marcel@mania-community.de>
  * @license http://opensource.org/licenses/GPL-2.0 GPL v2
  */
-class ParametersHydrate {
+class Hydrate {
     /**
      * Hydrates the parameters.
-     * @param \BluePsyduck\ManiaScriptCollection\Input\Parameters $parameters The parameters instance.
+     * @param \BluePsyduck\ManiaScriptCollection\Parameters\Parameters $parameters The parameters instance.
      * @param array $data The data.
-     * @return \BluePsyduck\ManiaScriptCollection\Input\Parameters The hydrated parameters.
+     * @return \BluePsyduck\ManiaScriptCollection\Parameters\Parameters The hydrated parameters.
      */
     public function hydrate(Parameters $parameters, array $data) {
         reset($data);

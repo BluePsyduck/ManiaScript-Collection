@@ -1,9 +1,10 @@
 <?php
 
-namespace BluePsyduck\ManiaScriptCollection\Script;
+namespace BluePsyduck\ManiaScriptCollection\Tools;
 
-use BluePsyduck\ManiaScriptCollection\Cache\CacheManager;
-use BluePsyduck\ManiaScriptCollection\Log\Logger;
+use BluePsyduck\ManiaScriptCollection\Cache\Manager;
+use BluePsyduck\ManiaScriptCollection\Logger\Logger;
+use BluePsyduck\ManiaScriptCollection\Script\Code;
 use Exception;
 use ManiaScript\Compressor;
 
@@ -21,13 +22,13 @@ class Loader {
 
     /**
      * The cache manager.
-     * @var \BluePsyduck\ManiaScriptCollection\Cache\CacheManager
+     * @var \BluePsyduck\ManiaScriptCollection\Cache\Manager
      */
     protected $cacheManager;
 
     /**
      * The patcher.
-     * @var \BluePsyduck\ManiaScriptCollection\Script\Patcher
+     * @var \BluePsyduck\ManiaScriptCollection\Tools\Patcher
      */
     protected $patcher;
 
@@ -39,7 +40,7 @@ class Loader {
 
     /**
      * The scripts to load.
-     * @var \BluePsyduck\ManiaScriptCollection\Script\Settings[]
+     * @var \BluePsyduck\ManiaScriptCollection\Script\Script[]
      */
     protected $scriptsToLoad = array();
 
@@ -53,14 +54,14 @@ class Loader {
      * Initializes the instance.
      */
     public function __construct() {
-        $this->cacheManager = new CacheManager();
+        $this->cacheManager = new Manager();
         $this->patcher = new Patcher();
         $this->compressor = new Compressor();
     }
 
     /**
      * Sets the scripts to load.
-     * @param Settings[] $scriptsToLoad The script settings.
+     * @param \BluePsyduck\ManiaScriptCollection\Script\Script[] $scriptsToLoad The script settings.
      * @return $this Implementing fluent interface.
      */
     public function setScriptsToLoad($scriptsToLoad) {
@@ -89,14 +90,14 @@ class Loader {
                 } else {
                     $code = $this->cacheManager->fetchOutdated($script);
                     if (is_null($code)) {
-                        Logger::getInstance()->log(
-                            '[Loader] Unable to load "' . $script->getName() . '", script must be skipped!',
-                            Logger::LEVEL_CRITICAL
+                        Logger::getInstance()->logCritical(
+                            'Unable to load "' . $script->getName() . '", script must be skipped!',
+                            'Loader'
                         );
                     } else {
-                        Logger::getInstance()->log(
-                            '[Loader] Using outdated version of "' . $script->getName() . '"',
-                            Logger::LEVEL_WARNING
+                        Logger::getInstance()->logWarning(
+                            'Using outdated version of "' . $script->getName() . '"',
+                            'Loader'
                         );
                     }
                 }
@@ -122,9 +123,9 @@ class Loader {
      * @return $this Implementing fluent interface.
      */
     protected function request(Code $code) {
-        Logger::getInstance()->log(
-            '[Loader] Request "' . $code->getSettings()->getName() . '"',
-            Logger::LEVEL_INFO
+        Logger::getInstance()->logInfo(
+            'Request "' . $code->getSettings()->getName() . '"',
+            'Loader'
         );
 
         $handle = curl_init();
@@ -148,9 +149,9 @@ class Loader {
             if ($handle) {
                 curl_close($handle);
             }
-            Logger::getInstance()->log(
-                '[Loader] Request of "' . $code->getSettings()->getName() . '" failed: ' . $e->getMessage(),
-                Logger::LEVEL_WARNING
+            Logger::getInstance()->logWarning(
+                'Request of "' . $code->getSettings()->getName() . '" failed: ' . $e->getMessage(),
+                'Loader'
             );
         }
         return $this;

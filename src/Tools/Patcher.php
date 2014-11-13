@@ -1,6 +1,6 @@
 <?php
 
-namespace BluePsyduck\ManiaScriptCollection\Script;
+namespace BluePsyduck\ManiaScriptCollection\Tools;
 
 use ManiaScript\Builder\Directive\Constant;
 use ManiaScript\Builder\Directive\Library;

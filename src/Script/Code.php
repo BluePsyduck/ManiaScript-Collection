@@ -11,7 +11,7 @@ namespace BluePsyduck\ManiaScriptCollection\Script;
 class Code {
     /**
      * The script settings of the code.
-     * @var \BluePsyduck\ManiaScriptCollection\Script\Settings
+     * @var \BluePsyduck\ManiaScriptCollection\Script\Script
      */
     protected $settings;
 
@@ -41,7 +41,7 @@ class Code {
 
     /**
      * Sets the script settings of the code.
-     * @param \BluePsyduck\ManiaScriptCollection\Script\Settings $settings The script settings.
+     * @param \BluePsyduck\ManiaScriptCollection\Script\Script $settings The script settings.
      * @return $this Implementing fluent interface.
      */
     public function setSettings($settings) {
@@ -51,7 +51,7 @@ class Code {
 
     /**
      * Returns the script settings of the code.
-     * @return \BluePsyduck\ManiaScriptCollection\Script\Settings The script settings.
+     * @return \BluePsyduck\ManiaScriptCollection\Script\Script The script settings.
      */
     public function getSettings() {
         return $this->settings;

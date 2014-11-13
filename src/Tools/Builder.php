@@ -1,9 +1,9 @@
 <?php
 
-namespace BluePsyduck\ManiaScriptCollection\Script;
+namespace BluePsyduck\ManiaScriptCollection\Tools;
 
-use BluePsyduck\ManiaScriptCollection\Input\Parameters;
-use BluePsyduck\ManiaScriptCollection\Log\Logger;
+use BluePsyduck\ManiaScriptCollection\Parameters\Parameters;
+use BluePsyduck\ManiaScriptCollection\Logger\Logger;
 use ManiaScript\Builder as ManiaScriptBuilder;
 use ManiaScript\Builder\Code as ManiaScriptCode;
 
@@ -16,7 +16,7 @@ use ManiaScript\Builder\Code as ManiaScriptCode;
 class Builder {
     /**
      * The input parameters.
-     * @var \BluePsyduck\ManiaScriptCollection\Input\Parameters
+     * @var \BluePsyduck\ManiaScriptCollection\Parameters\Parameters
      */
     protected $parameters;
 
@@ -41,7 +41,7 @@ class Builder {
 
     /**
      * Sets the input parameters.
-     * @param \BluePsyduck\ManiaScriptCollection\Input\Parameters $parameters The parameters instance.
+     * @param \BluePsyduck\ManiaScriptCollection\Parameters\Parameters $parameters The parameters instance.
      * @return $this Implementing fluent interface.
      */
     public function setParameters(Parameters $parameters) {
@@ -100,7 +100,11 @@ class Builder {
             $log = '/**' . PHP_EOL
                 . ' * ManiaScript Collection Log: ' . PHP_EOL;
             foreach ($items as $item) {
-                $log .= ' * [' . strtoupper($item->getLevel()) . '] ' . $item->getMessage() . PHP_EOL;
+                $log .= ' * [' . strtoupper($item->getLevel()) . '] ';
+                if ($item->getTool()) {
+                    $log .= '[' . $item->getTool() . '] ';
+                }
+                $log .= $item->getMessage() . PHP_EOL;
             }
             $log .= ' */' . PHP_EOL;
 

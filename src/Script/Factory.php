@@ -8,7 +8,7 @@ namespace BluePsyduck\ManiaScriptCollection\Script;
  * @author Marcel <marcel@mania-community.de>
  * @license http://opensource.org/licenses/GPL-2.0 GPL v2
  */
-class SettingsFactory {
+class Factory {
     /**
      * The directory where the script settings are saved.
      */
@@ -22,7 +22,7 @@ class SettingsFactory {
 
     /**
      * The hydrate instance of the settings.
-     * @var \BluePsyduck\ManiaScriptCollection\Script\SettingsHydrate
+     * @var \BluePsyduck\ManiaScriptCollection\Script\Hydrate
      */
     protected $settingsHydrate;
 
@@ -30,13 +30,13 @@ class SettingsFactory {
      * Initializes the factory.
      */
     public function __construct() {
-        $this->settingsHydrate = new SettingsHydrate();
+        $this->settingsHydrate = new Hydrate();
     }
 
     /**
      * Returns the settings of the specified script.
      * @param string $name The name of the script.
-     * @return \BluePsyduck\ManiaScriptCollection\Script\Settings|null The settings.
+     * @return \BluePsyduck\ManiaScriptCollection\Script\Script|null The settings.
      */
     public function get($name) {
         if (!array_key_exists($name, $this->instances)) {
@@ -48,7 +48,7 @@ class SettingsFactory {
     /**
      * Creates the settings of the specified script.
      * @param string $name The name of the script.
-     * @return \BluePsyduck\ManiaScriptCollection\Script\Settings|null The settings instance.
+     * @return \BluePsyduck\ManiaScriptCollection\Script\Script|null The settings instance.
      */
     protected function create($name) {
         $result = null;
@@ -56,7 +56,7 @@ class SettingsFactory {
         if (file_exists($fileName)) {
             $data = json_decode(file_get_contents($fileName), true);
             if (is_array($data)) {
-                $result = $this->settingsHydrate->hydrate(new Settings(), $data);
+                $result = $this->settingsHydrate->hydrate(new Script(), $data);
             }
         }
         return $result;

@@ -8,7 +8,7 @@ namespace BluePsyduck\ManiaScriptCollection\Script;
  * @author Marcel <marcel@mania-community.de>
  * @license http://opensource.org/licenses/GPL-2.0 GPL v2
  */
-class Settings {
+class Script {
     /**
      * The name of the script.
      * @var string

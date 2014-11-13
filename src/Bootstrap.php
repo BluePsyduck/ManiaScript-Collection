@@ -2,11 +2,11 @@
 
 namespace BluePsyduck\ManiaScriptCollection;
 
-use BluePsyduck\ManiaScriptCollection\Input\Parameters;
-use BluePsyduck\ManiaScriptCollection\Input\ParametersHydrate;
-use BluePsyduck\ManiaScriptCollection\Script\Builder;
-use BluePsyduck\ManiaScriptCollection\Script\DependencyResolver;
-use BluePsyduck\ManiaScriptCollection\Script\Loader;
+use BluePsyduck\ManiaScriptCollection\Parameters\Parameters;
+use BluePsyduck\ManiaScriptCollection\Parameters\Hydrate;
+use BluePsyduck\ManiaScriptCollection\Tools\Builder;
+use BluePsyduck\ManiaScriptCollection\Tools\DependencyResolver;
+use BluePsyduck\ManiaScriptCollection\Tools\Loader;
 
 /**
  * The bootstrap class.
@@ -40,16 +40,16 @@ class Bootstrap {
 
     /**
      * Creates and returns the input parameters.
-     * @return \BluePsyduck\ManiaScriptCollection\Input\Parameters The parameters instance.
+     * @return \BluePsyduck\ManiaScriptCollection\Parameters\Parameters The parameters instance.
      */
     protected function createParameters() {
-        $parametersHydrate = new ParametersHydrate();
+        $parametersHydrate = new Hydrate();
         return $parametersHydrate->hydrate(new Parameters(), $_GET);
     }
 
     /**
      * Creates and returns the dependency resolver.
-     * @return \BluePsyduck\ManiaScriptCollection\Script\DependencyResolver The dependency resolver instance.
+     * @return \BluePsyduck\ManiaScriptCollection\Tools\DependencyResolver The dependency resolver instance.
      */
     protected function createDependencyResolver() {
         return new DependencyResolver();
@@ -57,7 +57,7 @@ class Bootstrap {
 
     /**
      * Creates and returns the loader.
-     * @return Loader
+     * @return \BluePsyduck\ManiaScriptCollection\Tools\Loader The loader instance.
      */
     protected function createLoader() {
         return new Loader();
@@ -65,7 +65,7 @@ class Bootstrap {
 
     /**
      * Creates and returns the builder.
-     * @return Builder
+     * @return \BluePsyduck\ManiaScriptCollection\Tools\Builder The builder instance.
      */
     protected function createBuilder() {
         return new Builder();
