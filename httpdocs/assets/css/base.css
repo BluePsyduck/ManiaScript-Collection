@@ -109,3 +109,13 @@ input[type=text] {
     text-overflow: ellipsis;
     width: 99%;
 }
+
+footer {
+    color: #999999;
+    font-size: 0.75em;
+    line-height: 1.2;
+    text-align: center;
+}
+footer a, footer a:hover, footer a:visited, footer a:active {
+    color: #999999;
+}

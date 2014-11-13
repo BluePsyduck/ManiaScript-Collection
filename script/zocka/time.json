@@ -1,6 +1,8 @@
 {
     "name": "zocka/time",
     "author": "zocka",
+    "description": "Additional time functions",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/Time",
     "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/Time.Script.txt",
     "namespace": "Time",
     "dependencies": [],
