@@ -1,7 +1,7 @@
 {
     "name": "nadeo/draggable",
     "author": "Nadeo",
-    "description": "Dragging feature to frames of the ManiaLink",
+    "description": "Dragging feature for frames of the ManiaLink",
     "website": "https://github.com/maniaplanet/library-manialink#draggable",
     "source": "https://raw.githubusercontent.com/maniaplanet/library-manialink/master/modules/Draggable.Script.txt",
     "namespace": "LibManialink",

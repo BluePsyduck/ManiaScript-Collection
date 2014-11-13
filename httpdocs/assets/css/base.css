@@ -16,7 +16,7 @@ a:hover, a:active {
 #content {
     background: url('../img/stripes-white.png') center top repeat;
     border-radius: 5px;
-    margin: 20px auto;
+    margin: 0 auto;
     padding: 10px 20px;
     width: 1024px;
 }
@@ -110,10 +110,15 @@ input[type=text] {
     width: 99%;
 }
 
+header {
+    text-align: center;
+}
+
 footer {
     color: #999999;
     font-size: 0.75em;
     line-height: 1.2;
+    margin: 10px 0;
     text-align: center;
 }
 footer a, footer a:hover, footer a:visited, footer a:active {
