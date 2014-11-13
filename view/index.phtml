@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ManiaScript Collection powered by Mania-Community.de</title>
+        <link rel="stylesheet" href="assets/css/reset.css">
+        <link rel="stylesheet" href="assets/css/base.css">
+        <script src="assets/js/jquery/jquery-2.1.1.min.js"></script>
+        <script src="assets/js/base.js"></script>
+    </head>
+    <body>
+        <div id="content">
+            <?php foreach ($this->scripts as $name => $group) { ?>
+                <div class="script-group">
+                    <h3>Group: <?php echo $this->escape($name); ?></h3>
+                    <ul><?php
+                        foreach ($group as $script) {
+                            echo $this->partial('partial/script.phtml', array('script' => $script));
+                        }
+                    ?></ul>
+                </div>
+            <?php } ?>
+        </div>
+    </body>
+</html>

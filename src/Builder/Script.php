@@ -1,6 +1,6 @@
 <?php
 
-namespace BluePsyduck\ManiaScriptCollection\Tools;
+namespace BluePsyduck\ManiaScriptCollection\Builder;
 
 use BluePsyduck\ManiaScriptCollection\Parameters\Parameters;
 use BluePsyduck\ManiaScriptCollection\Logger\Logger;
@@ -13,7 +13,7 @@ use ManiaScript\Builder\Code as ManiaScriptCode;
  * @author Marcel <marcel@mania-community.de>
  * @license http://opensource.org/licenses/GPL-2.0 GPL v2
  */
-class Builder {
+class Script implements BuilderInterface {
     /**
      * The input parameters.
      * @var \BluePsyduck\ManiaScriptCollection\Parameters\Parameters
@@ -117,14 +117,22 @@ class Builder {
     }
 
     /**
-     * Returns the final code.
-     * @return string The final code.
+     * Returns the headers to be set.
+     * @return array The header lines.
      */
-    public function getFinalCode() {
+    public function getHeaders() {
+        return array('Content-Type: text/xml;charset=utf8');
+    }
+
+    /**
+     * Returns the rendered content to be send to the client.
+     * @return string The rendered content.
+     */
+    public function getRenderedContent() {
         $this->builder->getOptions()->setCompress(false)
-                                    ->setIncludeScriptTag(true)
-                                    ->setRenderContextDirective(false)
-                                    ->setRenderMainFunction(false);
+                      ->setIncludeScriptTag(true)
+                      ->setRenderContextDirective(false)
+                      ->setRenderMainFunction(false);
         $this->builder->build();
         return $this->builder->getCode();
     }

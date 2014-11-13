@@ -1,0 +1,21 @@
+<?php
+/* @var \BluePsyduck\ManiaScriptCollection\Script\Script $script */
+$script = $this->script;
+?>
+<li>
+    <div class="checkbox"><input type="checkbox" name="<?php echo $script->getName(); ?>" /></div>
+    <div class="text">
+        <h4><?php echo $this->escape($script->getName()); ?></h4>
+        <span class="description">Lorem ipsum dolor sit amet.</span>
+        <dl class="legend">
+            <dt>Website:</dt>
+            <dd>http://www.google.com</dd>
+            <dt>Source:</dt>
+            <dd><a href="<?php echo $this->escape($script->getSource()); ?>" target="_blank"><?php echo $this->escape($script->getSource()); ?></a></dd>
+            <dt>Dependencies:</dt>
+            <dd><?php echo $this->escape($this->implodeList($script->getDependencies())); ?></dd>
+            <dt>Conflicts:</dt>
+            <dd><?php echo $this->escape($this->implodeList($script->getConflicts())); ?></dd>
+        </dl>
+    </div>
+</li>

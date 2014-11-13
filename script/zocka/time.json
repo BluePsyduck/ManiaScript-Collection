@@ -1,0 +1,8 @@
+{
+    "name": "zocka/time",
+    "author": "zocka",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/Time.Script.txt",
+    "namespace": "Time",
+    "dependencies": [],
+    "conflicts": []
+}
