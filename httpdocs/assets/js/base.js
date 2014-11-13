@@ -11,7 +11,7 @@
             });
         },
         generateOutput = function(scripts, target) {
-            var code = '<input url="http://maniascript-collection.mania-community.de/',
+            var code = '<include url="http://maniascript-collection.mania-community.de/',
                 first = true;
             for (var key in scripts) {
                 if (scripts.hasOwnProperty(key) && scripts[key] === true) {
