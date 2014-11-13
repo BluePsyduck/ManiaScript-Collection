@@ -88,6 +88,7 @@ class Frontend implements BuilderInterface {
             }
         }
         closedir($handle);
+        sort($authors);
         return $authors;
     }
 
@@ -110,6 +111,7 @@ class Frontend implements BuilderInterface {
             }
         }
         closedir($handle);
+        ksort($scripts);
         return $scripts;
     }
 }
