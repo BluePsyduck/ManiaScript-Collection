@@ -48,7 +48,7 @@ class Patcher {
     public function patch() {
         $patterns = array(
             '@#(Include)\s+"([^"]+)"\s+as\s+(\S+)\s@',
-            '@#(Const|Setting)\s+(\S+)\s+(\S+)\s@'
+            '@#(Const|Setting)\s+(\S+)\s+("[^"]+"|\S+)\s@'
         );
         $this->patchedCode = preg_replace_callback($patterns, array($this, 'callbackReplace'), $this->code);
         return $this;
