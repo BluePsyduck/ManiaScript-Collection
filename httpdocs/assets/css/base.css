@@ -12,6 +12,9 @@ a, a:hover, a:visited, a:active {
 a:hover, a:active {
     text-decoration: underline;
 }
+.hidden {
+    display: none;
+}
 
 #content {
     background: url('../img/stripes-white.png') center top repeat;
@@ -65,14 +68,23 @@ input[type=text] {
 .script-group ul li.checked {
     background-color: #deeef8;
 }
-
 .script-group ul li .checkbox {
     float: left;
+    padding-top: 8px;
+}
+.script-group ul li .info-icon {
     display: block;
-    padding-top: 1px;
+    float: right;
+    height: 32px;
+    margin-top: 4px;
+    width: 32px;
+}
+.script-group ul li .info-icon:hover {
+    background-position: -32px 0;
 }
 .script-group ul li .text {
     margin-left: 32px;
+    margin-right: 40px;
 }
 .script-group ul li h4 {
     font-size: 1.25em;
@@ -123,4 +135,11 @@ footer {
 }
 footer a, footer a:hover, footer a:visited, footer a:active {
     color: #999999;
+}
+
+.main-sprite {
+    background: url('../img/main-sprite.png') no-repeat;
+}
+.main-sprite.info-icon {
+    background-position: 0 0;
 }

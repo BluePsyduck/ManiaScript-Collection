@@ -4,10 +4,13 @@ $script = $this->script;
 ?>
 <li class="content-box script" data-script="<?php echo $this->escape($script->getName()); ?>">
     <div class="checkbox"><input type="checkbox" name="<?php echo $script->getName(); ?>" /></div>
+    <div class="main-sprite info-icon"></div>
     <div class="text">
         <h4><?php echo $this->escape($script->getName()); ?></h4>
         <span class="description"><?php echo $this->escape($script->getDescription()); ?></span>
-        <dl class="legend">
+        <dl class="legend hidden">
+            <dt>Author:</dt>
+            <dd><?php echo $this->escape($script->getAuthor()); ?></dd>
             <dt>Website:</dt>
             <dd><a href="<?php echo $this->escape($script->getWebsite()); ?>" target="_blank"><?php echo $this->escape($script->getWebsite()); ?></a></dd>
             <dt>Source:</dt>

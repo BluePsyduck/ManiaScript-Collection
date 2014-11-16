@@ -1,6 +1,5 @@
 (function($) {
     var scripts = [],
-        usageOutput = null,
         initializeScripts = function(elements) {
             elements.each(function(index, element) {
                 var script = $(element),
@@ -29,15 +28,15 @@
         };
 
     $(document).on('ready', function() {
-        usageOutput = $('#usageOutput');
-        usageOutput.on('focus', function(event) {
-            event.currentTarget.select();
-        });
+        var usageOutput = $('#usageOutput'),
+            scriptElements = $('#scripts').find('.script');
 
-        var scriptElements = $('#scripts').find('.script');
         initializeScripts(scriptElements);
         generateOutput(scripts, usageOutput);
 
+        usageOutput.on('focus', function(event) {
+            event.currentTarget.select();
+        });
         scriptElements.on('click', function(event) {
             var script = $(event.currentTarget);
             scripts[script.data('script')] = !scripts[script.data('script')];
@@ -45,7 +44,19 @@
             script.toggleClass('checked', scripts[script.data('script')]);
             generateOutput(scripts, usageOutput);
         });
+        scriptElements.find('.info-icon').on('click', function(event) {
+            var legend = $(event.currentTarget).parent().find('.legend');
+            if (legend.hasClass('hidden')) {
+                legend.slideDown();
+                legend.removeClass('hidden');
+            } else {
+                legend.slideUp();
+                legend.addClass('hidden');
+            }
+            event.stopPropagation();
+        });
+        scriptElements.find('a').on('click', function(event) {
+            event.stopPropagation();
+        });
     });
-
-
 })(jQuery);
