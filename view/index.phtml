@@ -14,7 +14,11 @@
             <?php echo $this->partial('partial/usage.phtml'); ?>
 
             <section id="scripts">
+                <div class="filter">
+                    <input id="filterInput" placeholder="Enter search term..." type="search" />
+                </div>
                 <h1>Available Scripts</h1>
+                <?php echo $this->partial('partial/filter.phtml'); ?>
                 <?php foreach ($this->scripts as $name => $group) { ?>
                     <section class="script-group">
                         <h3 class="content-title">Group: <?php echo $this->escape($name); ?></h3>

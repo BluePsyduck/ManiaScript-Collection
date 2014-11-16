@@ -6,7 +6,7 @@ $script = $this->script;
     <div class="checkbox"><input type="checkbox" name="<?php echo $script->getName(); ?>" /></div>
     <div class="main-sprite info-icon"></div>
     <div class="text">
-        <h4><?php echo $this->escape($script->getName()); ?></h4>
+        <h4 class="name"><?php echo $this->escape($script->getName()); ?></h4>
         <span class="description"><?php echo $this->escape($script->getDescription()); ?></span>
         <dl class="legend hidden">
             <dt>Author:</dt>

@@ -55,11 +55,19 @@ h1 {
 .description {
     font-style: italic;
 }
-input[type=text] {
+input[type=text], .filter input[type=search] {
     border: 1px solid #6b91ab;
     border-radius: 3px;
     font-weight: bold;
     padding: 4px;
+}
+
+.filter {
+    float: right;
+    margin-top: 20px;
+}
+.filter input[type=search] {
+    width: 200px;
 }
 
 .script-group ul li {
