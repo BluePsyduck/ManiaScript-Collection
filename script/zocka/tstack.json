@@ -1,0 +1,10 @@
+{
+    "name": "zocka/tstack",
+    "author": "zocka",
+    "description": "A stack implementation for Text values",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/TStack",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/TStack.Script.txt",
+    "namespace": "TStack",
+    "dependencies": [],
+    "conflicts": []
+}
