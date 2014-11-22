@@ -13,7 +13,6 @@ use BluePsyduck\ManiaScriptCollection\Script\Script;
  * @license http://opensource.org/licenses/GPL-2.0 GPL v2
  *
  * @todo Detect dependency loops.
- * @todo Detect conflicts
  */
 class DependencyResolver {
     /**
@@ -59,16 +58,19 @@ class DependencyResolver {
         $this->scriptsToLoad = array();
         while (!empty($this->requiredScripts)) {
             $scriptName = $this->requiredScripts[0];
-            $settings = $this->settingsFactory->get($scriptName);
-            if (is_null($settings)) {
+            $script = $this->settingsFactory->get($scriptName);
+            if (is_null($script)) {
                 Logger::getInstance()->logCritical(
                     'Unable to resolve "' . $scriptName . '": Script not known',
                     'DependencyResolver'
                 );
                 array_shift($this->requiredScripts);
             } else {
-                $this->resolveDependencies($settings);
+                $this->resolveDependencies($script);
             }
+        }
+        foreach ($this->scriptsToLoad as $script) {
+            $this->checkConflicts($script);
         }
         return $this;
     }
@@ -93,6 +95,23 @@ class DependencyResolver {
         if (!$hasUnloadedDependencies) {
             array_shift($this->requiredScripts);
             $this->scriptsToLoad[$script->getName()] = $script;
+        }
+        return $this;
+    }
+
+    /**
+     * Checks whether the specified script has conflicts in the currently loaded scripts.
+     * @param \BluePsyduck\ManiaScriptCollection\Script\Script $script
+     * @return $this Implementing fluent interface.
+     */
+    protected function checkConflicts(Script $script) {
+        foreach ($script->getConflicts() as $conflict) {
+            if (isset($this->scriptsToLoad[$conflict])) {
+                Logger::getInstance()->logCritical(
+                    'Conflict: Scripts "' . $script->getName() . '" and "' . $conflict . '" are not compatible!',
+                    'DependencyResolver'
+                );
+            }
         }
         return $this;
     }
