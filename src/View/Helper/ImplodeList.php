@@ -17,7 +17,7 @@ class ImplodeList extends AbstractHelper {
     public function __invoke($list) {
         $result = 'none';
         if (is_array($list) && !empty($list)) {
-            $result = implode(', ', $result);
+            $result = implode(', ', $list);
         }
         return $result;
     }
