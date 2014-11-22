@@ -1,0 +1,10 @@
+{
+    "name": "zocka/nfa",
+    "author": "zocka",
+    "description": "An implementation of a Nondeterministic Finite Automaton",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/NFA",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/NFA.Script.txt",
+    "namespace": "NFA",
+    "dependencies": [],
+    "conflicts": []
+}
