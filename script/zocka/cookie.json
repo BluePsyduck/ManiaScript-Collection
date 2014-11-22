@@ -1,0 +1,10 @@
+{
+    "name": "zocka/cookie",
+    "author": "zocka",
+    "description": "An easy way to manage persistent variables",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/Cookie",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/Cookie.Script.txt",
+    "namespace": "Cookie",
+    "dependencies": ["zocka/time"],
+    "conflicts": []
+}

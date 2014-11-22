@@ -1,0 +1,10 @@
+{
+    "name": "zocka/dfa",
+    "author": "zocka",
+    "description": "An implementation of a Deterministic Finite Automaton",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/DFA",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/DFA.Script.txt",
+    "namespace": "DFA",
+    "dependencies": [],
+    "conflicts": []
+}
