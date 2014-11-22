@@ -10,7 +10,8 @@
             });
         },
         generateOutput = function(scripts, target) {
-            var code = '<include url="http://maniascript-collection.mania-community.de/',
+            var scriptUrl = target.data('script-url'),
+                code = '<include url="' + scriptUrl,
                 first = true;
             for (var key in scripts) {
                 if (scripts.hasOwnProperty(key) && scripts[key] === true) {
