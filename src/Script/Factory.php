@@ -69,7 +69,7 @@ class Factory {
      */
     protected function getFileName($name) {
         $result = '';
-        if (preg_match('#([a-zA-Z\-_]+)/([a-zA-Z\-_]+)#', $name, $matches) > 0) {
+        if (preg_match('#([a-zA-Z0-9\-_]+)/([a-zA-Z0-9\-_]+)#', $name, $matches) > 0) {
             $group = strtolower($matches[1]);
             $script = strtolower($matches[2]);
             $result = self::DIRECTORY . DIRECTORY_SEPARATOR . $group . DIRECTORY_SEPARATOR . $script . '.json';

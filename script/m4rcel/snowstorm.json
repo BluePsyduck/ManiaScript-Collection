@@ -1,0 +1,10 @@
+{
+    "name": "m4rcel/snowstorm",
+    "author": "m4rcel (FT»Marcel)",
+    "description": "A simple snowstorm effect for your ManiaLink.",
+    "website": "https://github.com/BluePsyduck/Misc/wiki/ManiaScript-Snowstorm",
+    "source": "https://raw.githubusercontent.com/BluePsyduck/Misc/master/maniascript/snowstorm/Snowstorm.Script.txt",
+    "namespace": "Snowstorm",
+    "dependencies": [],
+    "conflicts": []
+}
