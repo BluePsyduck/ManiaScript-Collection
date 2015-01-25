@@ -1,0 +1,10 @@
+{
+    "name": "zocka/json",
+    "author": "zocka",
+    "description": "This library offers basic functionality to parse JSON strings.",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/JSON",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/JSON.Script.txt",
+    "namespace": "JSON",
+    "dependencies": [],
+    "conflicts": []
+}

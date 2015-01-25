@@ -1,0 +1,10 @@
+{
+    "name": "zocka/ripple",
+    "author": "zocka",
+    "description": "This library implements the ripple effect on google's material design buttons.",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/Ripple",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/Ripple.Script.txt",
+    "namespace": "Ripple",
+    "dependencies": [],
+    "conflicts": []
+}
