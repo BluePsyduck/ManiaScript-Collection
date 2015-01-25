@@ -3,6 +3,7 @@
 namespace BluePsyduck\ManiaScriptCollection\Builder;
 
 use BluePsyduck\ManiaScriptCollection\Script\Factory;
+use BluePsyduck\ManiaScriptCollection\Script\Script;
 use BluePsyduck\ManiaScriptCollection\View\Renderer;
 use BluePsyduck\ManiaScriptCollection\View\View;
 
@@ -107,7 +108,10 @@ class Frontend implements BuilderInterface {
                 && substr($fileName, -5) === '.json'
             ) {
                 $scriptName = substr($fileName, 0, -5);
-                $scripts[$scriptName] = $this->scriptFactory->get($author . '/' . $scriptName);
+                $script = $this->scriptFactory->get($author . '/' . $scriptName);
+                if ($script instanceof Script) {
+                    $scripts[$scriptName] = $script;
+                }
             }
         }
         closedir($handle);

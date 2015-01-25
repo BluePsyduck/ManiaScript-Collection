@@ -1,5 +1,6 @@
 (function($) {
     var scripts = [],
+        addressTimeout = null,
         initializeScripts = function(elements) {
             elements.each(function(index, element) {
                 var script = $(element),
@@ -39,6 +40,24 @@
                     script.slideDown();
                 }
             });
+        },
+        changeFilter = function(value) {
+            if (addressTimeout !== null) {
+                window.clearTimeout(addressTimeout);
+            }
+            addressTimeout = window.setTimeout(function() {
+                $.address.value(value);
+            }, 250);
+        },
+        toggleInfo = function(target) {
+            var legend = target.find('.legend');
+            if (legend.hasClass('hidden')) {
+                legend.slideDown();
+                legend.removeClass('hidden');
+            } else {
+                legend.slideUp();
+                legend.addClass('hidden');
+            }
         };
 
     $(document).on('ready', function() {
@@ -53,29 +72,32 @@
             event.currentTarget.select();
         });
 
+        $.address.change(function(event) {
+            var value = event.value.replace(/^\/*/, '');
+            filter(scriptElements, value);
+            filterInput.val(value);
+        });
+
         filterInput.on('keyup', function(event) {
-            filter(scriptElements, $(event.currentTarget).val());
+            changeFilter($(event.currentTarget).val());
         });
         filterInput.on('search', function(event) {
-            filter(scriptElements, $(event.currentTarget).val());
+            changeFilter($(event.currentTarget).val());
         });
 
         scriptElements.on('click', function(event) {
             var script = $(event.currentTarget);
-            scripts[script.data('script')] = !scripts[script.data('script')];
-            script.find('input[type=checkbox]').first().prop('checked', scripts[script.data('script')]);
-            script.toggleClass('checked', scripts[script.data('script')]);
-            generateOutput(scripts, usageOutput);
+            if (event.shiftKey) {
+                toggleInfo(script);
+            } else {
+                scripts[script.data('script')] = !scripts[script.data('script')];
+                script.find('input[type=checkbox]').first().prop('checked', scripts[script.data('script')]);
+                script.toggleClass('checked', scripts[script.data('script')]);
+                generateOutput(scripts, usageOutput);
+            }
         });
         scriptElements.find('.info-icon').on('click', function(event) {
-            var legend = $(event.currentTarget).parent().find('.legend');
-            if (legend.hasClass('hidden')) {
-                legend.slideDown();
-                legend.removeClass('hidden');
-            } else {
-                legend.slideUp();
-                legend.addClass('hidden');
-            }
+            toggleInfo($(event.currentTarget).parent());
             event.stopPropagation();
         });
         scriptElements.find('a').on('click', function(event) {
