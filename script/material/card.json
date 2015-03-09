@@ -1,0 +1,10 @@
+{
+    "name": "material/card",
+    "author": "zocka",
+    "description": "Scales and positions a shadow with a given distance on a card style container.",
+    "website": "",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/MaterialDesign/Material_Card.Script.txt",
+    "namespace": "Material_Card",
+    "dependencies": ["material/base"],
+    "conflicts": []
+}

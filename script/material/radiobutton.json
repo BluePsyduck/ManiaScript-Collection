@@ -1,0 +1,10 @@
+{
+    "name": "material/radiobutton",
+    "author": "zocka",
+    "description": "Radiobuttons",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/Material_Radiobutton",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/MaterialDesign/Material_Radiobutton.Script.txt",
+    "namespace": "Material_Radiobutton",
+    "dependencies": ["material/base"],
+    "conflicts": []
+}
