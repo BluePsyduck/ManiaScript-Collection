@@ -1,0 +1,10 @@
+{
+    "name": "material/input",
+    "author": "zocka",
+    "description": "Material Design styled text inputs",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/Input",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/MaterialDesign/Material_Input.Script.txt",
+    "namespace": "Material_Input",
+    "dependencies": ["material/base"],
+    "conflicts": []
+}

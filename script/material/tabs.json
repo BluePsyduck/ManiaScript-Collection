@@ -1,0 +1,10 @@
+{
+    "name": "material/tabs",
+    "author": "zocka",
+    "description": "Tab navigation",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/Material_Tabs",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/MaterialDesign/Material_Tabs.Script.txt",
+    "namespace": "Material_Tabs",
+    "dependencies": ["material/base", "material/ripple"],
+    "conflicts": []
+}

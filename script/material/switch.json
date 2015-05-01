@@ -1,0 +1,10 @@
+{
+    "name": "material/switch",
+    "author": "zocka",
+    "description": "Toggleable switches",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/Material_Switch",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/MaterialDesign/Material_Switch.Script.txt",
+    "namespace": "Material_Switch",
+    "dependencies": ["material/base"],
+    "conflicts": []
+}

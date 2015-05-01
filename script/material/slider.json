@@ -1,0 +1,10 @@
+{
+    "name": "material/slider",
+    "author": "zocka",
+    "description": "Draggable slider element",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/Material_Slider",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/MaterialDesign/Material_Slider.Script.txt",
+    "namespace": "Material_Slider",
+    "dependencies": ["material/base"],
+    "conflicts": []
+}

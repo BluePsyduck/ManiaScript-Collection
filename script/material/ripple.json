@@ -1,0 +1,10 @@
+{
+    "name": "material/ripple",
+    "author": "zocka",
+    "description": "Ripple effect",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/Material_Ripple",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/MaterialDesign/Material_Ripple.Script.txt",
+    "namespace": "Material_Ripple",
+    "dependencies": ["material/base"],
+    "conflicts": []
+}

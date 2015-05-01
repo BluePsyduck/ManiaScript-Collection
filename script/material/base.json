@@ -1,0 +1,10 @@
+{
+    "name": "material/base",
+    "author": "zocka",
+    "description": "Base functions and declarations for the Material libraries",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/Material_Base",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/MaterialDesign/Material_Base.Script.txt",
+    "namespace": "Material",
+    "dependencies": [],
+    "conflicts": []
+}
