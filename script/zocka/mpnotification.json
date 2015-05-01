@@ -1,0 +1,10 @@
+{
+    "name": "zocka/mpnotification",
+    "author": "zocka",
+    "description": "A stack implementation for Text values",
+    "website": "https://github.com/PRGfx/mQscripts/wiki/MPNotification",
+    "source": "https://raw.githubusercontent.com/PRGfx/mQscripts/master/lib/MPNotification.Script.txt",
+    "namespace": "MPNotification",
+    "dependencies": [],
+    "conflicts": []
+}
